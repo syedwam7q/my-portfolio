@@ -1,16 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-interface Project {
-  title: string;
-  description: string;
-  tech: string[];
-  color: string;
-  link?: string;
-}
-
-const ProjectsSection: React.FC = () => {
-  const projects: Project[] = [
+const ProjectsSection = () => {
+  const projects = [
     {
       title: 'DevKit Pro',
       description: 'A comprehensive developer toolkit with code snippets, documentation, and utilities',

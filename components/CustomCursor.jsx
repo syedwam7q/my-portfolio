@@ -1,10 +1,6 @@
 import React from 'react';
 
-interface CustomCursorProps {
-  mousePos: { x: number; y: number };
-}
-
-const CustomCursor: React.FC<CustomCursorProps> = ({ mousePos }) => {
+const CustomCursor = ({ mousePos }) => {
   return (
     <>
       {/* Main cursor */}

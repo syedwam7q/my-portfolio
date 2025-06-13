@@ -2,7 +2,7 @@ import React from 'react';
 import { Mail, Github, Linkedin } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const ContactSection: React.FC = () => {
+const ContactSection = () => {
   return (
     <section id="contact" className="relative z-10 py-24 px-6 bg-gray-900/50">
       <div className="max-w-4xl mx-auto text-center">
@@ -68,19 +68,38 @@ const ContactSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
         >
           <h3 className="text-2xl font-bold mb-6 text-cyan-400">Send a Message</h3>
-          <form className="space-y-4">
+          <form 
+            className="space-y-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const name = e.target.elements.name.value;
+              const email = e.target.elements.email.value;
+              const subject = e.target.elements.subject.value;
+              const message = e.target.elements.message.value;
+              
+              // Create mailto link with form data
+              const mailtoLink = `mailto:sdirwamiq@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`)}`;
+              
+              // Open email client
+              window.location.href = mailtoLink;
+            }}
+          >
             <div className="grid md:grid-cols-2 gap-4">
               <div>
                 <input 
                   type="text" 
+                  name="name"
                   placeholder="Your Name" 
+                  required
                   className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
                 />
               </div>
               <div>
                 <input 
                   type="email" 
+                  name="email"
                   placeholder="Your Email" 
+                  required
                   className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
                 />
               </div>
@@ -88,14 +107,18 @@ const ContactSection: React.FC = () => {
             <div>
               <input 
                 type="text" 
+                name="subject"
                 placeholder="Subject" 
+                required
                 className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
               />
             </div>
             <div>
               <textarea 
                 rows={5} 
+                name="message"
                 placeholder="Your Message" 
+                required
                 className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
               />
             </div>

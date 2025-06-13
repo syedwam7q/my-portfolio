@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 
-interface NavigationProps {
-  activeSection: string;
-}
-
-const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
+const Navigation = ({ activeSection }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
   const navItems = ['hero', 'about', 'skills', 'projects', 'contact'];

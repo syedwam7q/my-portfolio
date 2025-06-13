@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ChevronDown, Rocket } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const HeroSection: React.FC = () => {
+const HeroSection = () => {
   const [glitchText, setGlitchText] = useState('DEVELOPER');
 
   // Glitch effect

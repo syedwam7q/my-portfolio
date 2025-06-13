@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const AboutSection: React.FC = () => {
+const AboutSection = () => {
   return (
     <section id="about" className="relative z-10 py-24 px-6">
       <div className="max-w-4xl mx-auto">

@@ -1,16 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
-interface Particle {
-  x: number;
-  y: number;
-  size: number;
-  speedX: number;
-  speedY: number;
-  opacity: number;
-}
-
-const ParticleBackground: React.FC = () => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+const ParticleBackground = () => {
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -22,21 +13,13 @@ const ParticleBackground: React.FC = () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     
-    const particles: Particle[] = [];
+    const particles = [];
     const particleCount = 100;
     
-    class ParticleClass implements Particle {
-      x: number;
-      y: number;
-      size: number;
-      speedX: number;
-      speedY: number;
-      opacity: number;
-      
+    class ParticleClass {
       constructor() {
-        // Using non-null assertion operator since we've already checked canvas exists
-        this.x = Math.random() * canvas!.width;
-        this.y = Math.random() * canvas!.height;
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
         this.size = Math.random() * 2;
         this.speedX = Math.random() * 2 - 1;
         this.speedY = Math.random() * 2 - 1;
@@ -47,10 +30,10 @@ const ParticleBackground: React.FC = () => {
         this.x += this.speedX;
         this.y += this.speedY;
         
-        if (this.x > canvas!.width) this.x = 0;
-        if (this.x < 0) this.x = canvas!.width;
-        if (this.y > canvas!.height) this.y = 0;
-        if (this.y < 0) this.y = canvas!.height;
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
       }
       
       draw() {
@@ -70,10 +53,8 @@ const ParticleBackground: React.FC = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach(particle => {
-        if (particle instanceof ParticleClass) {
-          particle.update();
-          particle.draw();
-        }
+        particle.update();
+        particle.draw();
       });
       requestAnimationFrame(animate);
     };

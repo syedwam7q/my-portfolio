@@ -2,7 +2,7 @@ import React from 'react';
 import { Code, Palette, Cpu, Globe, Zap } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-const SkillsSection: React.FC = () => {
+const SkillsSection = () => {
   const skills = [
     { name: 'Python Development', level: 90, icon: <Code className="w-5 h-5" /> },
     { name: 'React & Next.js', level: 70, icon: <Code className="w-5 h-5" /> },

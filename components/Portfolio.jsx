@@ -15,7 +15,7 @@ const Portfolio = () => {
 
   // Mouse tracking
   useEffect(() => {
-    const handleMouseMove = (e: MouseEvent) => {
+    const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
     
@@ -62,7 +62,7 @@ const Portfolio = () => {
       
       <footer className="relative z-10 py-6 text-center text-gray-500 text-sm border-t border-cyan-900/30">
         <div className="max-w-7xl mx-auto px-6">
-          <p>© {new Date().getFullYear()} Cyberpunk Portfolio. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Syed Wamiq - Portfolio. All rights reserved.</p>
         </div>
       </footer>
     </div>
