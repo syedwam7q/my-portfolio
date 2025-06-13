@@ -6,22 +6,42 @@ import Navigation from './Navigation';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import SkillsSection from './sections/SkillsSection';
+import ResumeSection from './sections/ResumeSection';
 import ProjectsSection from './sections/ProjectsSection';
 import ContactSection from './sections/ContactSection';
 
 const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Mouse tracking
+  // Check if device is mobile
   useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Mouse tracking (only on desktop)
+  useEffect(() => {
+    if (isMobile) return;
+    
     const handleMouseMove = (e) => {
       setMousePos({ x: e.clientX, y: e.clientY });
     };
     
     window.addEventListener('mousemove', handleMouseMove);
     return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+  }, [isMobile]);
 
   // Intersection Observer for sections
   useEffect(() => {
@@ -33,7 +53,10 @@ const Portfolio = () => {
           }
         });
       },
-      { threshold: 0.5 }
+      { 
+        threshold: isMobile ? 0.2 : 0.5,
+        rootMargin: isMobile ? "-10% 0px" : "0px"
+      }
     );
 
     const sections = document.querySelectorAll('section[id]');
@@ -42,7 +65,7 @@ const Portfolio = () => {
     return () => {
       sections.forEach((section) => observer.unobserve(section));
     };
-  }, []);
+  }, [isMobile]);
 
   return (
     <div className="relative min-h-screen bg-black text-white overflow-hidden">
@@ -56,6 +79,7 @@ const Portfolio = () => {
         <HeroSection />
         <AboutSection />
         <SkillsSection />
+        <ResumeSection />
         <ProjectsSection />
         <ContactSection />
       </main>

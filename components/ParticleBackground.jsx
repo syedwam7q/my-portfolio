@@ -1,7 +1,24 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const ParticleBackground = () => {
   const canvasRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    // Check if device is mobile
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    // Initial check
+    checkMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -14,15 +31,16 @@ const ParticleBackground = () => {
     canvas.height = window.innerHeight;
     
     const particles = [];
-    const particleCount = 100;
+    // Reduce particle count on mobile for better performance
+    const particleCount = isMobile ? 40 : 100;
     
     class ParticleClass {
       constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2;
-        this.speedX = Math.random() * 2 - 1;
-        this.speedY = Math.random() * 2 - 1;
+        this.size = Math.random() * (isMobile ? 1.5 : 2);
+        this.speedX = Math.random() * (isMobile ? 1 : 2) - (isMobile ? 0.5 : 1);
+        this.speedY = Math.random() * (isMobile ? 1 : 2) - (isMobile ? 0.5 : 1);
         this.opacity = Math.random() * 0.5 + 0.2;
       }
       
@@ -49,6 +67,8 @@ const ParticleBackground = () => {
       particles.push(new ParticleClass());
     }
     
+    let animationFrameId;
+    
     const animate = () => {
       if (!ctx) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -56,7 +76,7 @@ const ParticleBackground = () => {
         particle.update();
         particle.draw();
       });
-      requestAnimationFrame(animate);
+      animationFrameId = requestAnimationFrame(animate);
     };
     
     animate();
@@ -67,8 +87,14 @@ const ParticleBackground = () => {
     };
     
     window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      if (animationFrameId) {
+        cancelAnimationFrame(animationFrameId);
+      }
+    };
+  }, [isMobile]);
 
   return (
     <canvas

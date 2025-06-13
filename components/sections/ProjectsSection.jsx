@@ -39,7 +39,7 @@ const ProjectsSection = () => {
           FEATURED PROJECTS
         </motion.h2>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {projects.map((project, index) => (
             <motion.div 
               key={index} 
@@ -52,21 +52,23 @@ const ProjectsSection = () => {
               <div className="absolute inset-0 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg blur-xl"
                    style={{ backgroundImage: `linear-gradient(to right, ${project.color.split(' ')[1]}, ${project.color.split(' ')[3]})` }}
               />
-              <div className="relative bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2">
-                <div className={`h-2 w-full bg-gradient-to-r ${project.color} rounded-full mb-6`} />
-                <h3 className="text-2xl font-bold mb-3">{project.title}</h3>
-                <p className="text-gray-400 mb-6">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-6">
+              <div className="relative bg-gray-900 border border-gray-800 rounded-lg p-4 md:p-6 hover:border-cyan-500/50 transition-all duration-300 hover:-translate-y-2">
+                <div className={`h-2 w-full bg-gradient-to-r ${project.color} rounded-full mb-4 md:mb-6`} />
+                <h3 className="text-xl md:text-2xl font-bold mb-2 md:mb-3">{project.title}</h3>
+                <p className="text-gray-400 text-sm md:text-base mb-4 md:mb-6">{project.description}</p>
+                <div className="flex flex-wrap gap-2 mb-4 md:mb-6">
                   {project.tech.map((tech, techIndex) => (
-                    <span key={techIndex} className="px-3 py-1 bg-cyan-500/20 border border-cyan-500/50 rounded-full text-sm">
+                    <span key={techIndex} className="px-2 md:px-3 py-1 bg-cyan-500/20 border border-cyan-500/50 rounded-full text-xs md:text-sm">
                       {tech}
                     </span>
                   ))}
                 </div>
                 {project.link && (
                   <a 
-                    href={project.link} 
-                    className="inline-block text-cyan-400 hover:text-white transition-colors"
+                    href={project.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block text-cyan-400 hover:text-white transition-colors text-sm md:text-base py-2 px-4 border border-cyan-500/30 rounded hover:bg-cyan-500/20"
                   >
                     View Project →
                   </a>

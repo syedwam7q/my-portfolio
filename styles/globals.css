@@ -8,8 +8,11 @@
   --background-end-rgb: 10, 10, 20;
 }
 
-* {
-  cursor: none;
+/* Only hide cursor on desktop */
+@media (min-width: 768px) {
+  * {
+    cursor: none;
+  }
 }
 
 html {
@@ -60,6 +63,35 @@ body {
   100% {
     clip-path: inset(58% 0 43% 0);
     transform: translate(-2px, 2px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scan-line {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 100%;
   }
 }
 

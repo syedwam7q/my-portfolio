@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react';
 const Navigation = ({ activeSection }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   
-  const navItems = ['hero', 'about', 'skills', 'projects', 'contact'];
+  const navItems = ['hero', 'about', 'skills', 'resume', 'projects', 'contact'];
   
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -51,16 +51,19 @@ const Navigation = ({ activeSection }) => {
       
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black/95 backdrop-blur-md pt-20">
+        <div className="md:hidden fixed inset-0 z-40 bg-black/95 backdrop-blur-md pt-20 animate-fadeIn">
           <div className="flex flex-col items-center gap-8 p-8">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <a
                 key={item}
                 href={`#${item}`}
-                className={`text-2xl font-bold ${
+                className={`text-2xl font-bold transition-all duration-300 animate-fadeInUp ${
                   activeSection === item ? 'text-cyan-400' : 'text-white'
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
+                style={{ 
+                  animationDelay: `${index * 0.1}s`
+                }}
               >
                 <span className="relative">
                   {item === 'hero' ? 'Home' : item}
