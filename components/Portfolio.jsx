@@ -1,8 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { ChevronDown, Github, Linkedin, Mail, Code, Palette, Rocket, Cpu, Globe, Zap } from 'lucide-react';
 import ParticleBackground from './ParticleBackground';
 import CustomCursor from './CustomCursor';
 import Navigation from './Navigation';
+import ScrollProgress from './ScrollProgress';
+import ThemeToggle from './ThemeToggle';
+import { ThemeContext } from './ThemeContext';
 import HeroSection from './sections/HeroSection';
 import AboutSection from './sections/AboutSection';
 import SkillsSection from './sections/SkillsSection';
@@ -14,6 +17,7 @@ const Portfolio = () => {
   const [activeSection, setActiveSection] = useState('hero');
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [isMobile, setIsMobile] = useState(false);
+  const { isDarkMode } = useContext(ThemeContext);
 
   // Check if device is mobile
   useEffect(() => {
@@ -68,9 +72,11 @@ const Portfolio = () => {
   }, [isMobile]);
 
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-hidden">
+    <div className={`relative min-h-screen overflow-hidden theme-transition ${isDarkMode ? 'dark-theme' : 'light-theme'}`}>
       <ParticleBackground />
       <CustomCursor mousePos={mousePos} />
+      <ScrollProgress />
+      <ThemeToggle />
       <div className="scan-line" />
       
       <Navigation activeSection={activeSection} />
@@ -84,9 +90,40 @@ const Portfolio = () => {
         <ContactSection />
       </main>
       
-      <footer className="relative z-10 py-6 text-center text-gray-500 text-sm border-t border-cyan-900/30">
+      <footer className="relative z-10 py-6 text-center border-t backdrop-blur-sm theme-transition">
         <div className="max-w-7xl mx-auto px-6">
-          <p>© {new Date().getFullYear()} Syed Wamiq - Portfolio. All rights reserved.</p>
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              © {new Date().getFullYear()} Syed Wamiq - Portfolio. All rights reserved.
+            </p>
+            <div className="flex gap-4">
+              <a 
+                href="https://github.com/syedwam7q" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="GitHub Profile" 
+                className="text-gray-500 hover:text-cyber-blue dark:text-gray-400 dark:hover:text-cyber-blue transition-colors"
+              >
+                <Github size={18} />
+              </a>
+              <a 
+                href="https://linkedin.com/in/syedwamiq" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                aria-label="LinkedIn Profile" 
+                className="text-gray-500 hover:text-cyber-blue dark:text-gray-400 dark:hover:text-cyber-blue transition-colors"
+              >
+                <Linkedin size={18} />
+              </a>
+              <a 
+                href="mailto:contact@syedwamiq.com" 
+                aria-label="Email Contact" 
+                className="text-gray-500 hover:text-cyber-blue dark:text-gray-400 dark:hover:text-cyber-blue transition-colors"
+              >
+                <Mail size={18} />
+              </a>
+            </div>
+          </div>
         </div>
       </footer>
     </div>

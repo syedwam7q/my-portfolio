@@ -1,5 +1,9 @@
+'use client'
+
 import '../styles/globals.css'
 import { Rajdhani } from 'next/font/google'
+import ThemeProvider from '../components/ThemeContext'
+import { metadata } from './metadata'
 
 const rajdhani = Rajdhani({
   subsets: ['latin'],
@@ -7,19 +11,21 @@ const rajdhani = Rajdhani({
   variable: '--font-rajdhani',
 })
 
-export const metadata = {
-  title: 'SYED WAMIQ - Developer Portfolio',
-  description: 'A futuristic cyberpunk-themed portfolio showcasing creative development work',
-}
-
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" className="dark-theme">
       <head>
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+        <meta name="keywords" content={metadata.keywords} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#000000" />
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className={rajdhani.className}>
-        {children}
+      <body className={`${rajdhani.className} theme-transition`}>
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

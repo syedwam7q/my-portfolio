@@ -2,16 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+/* Dark theme variables (default) */
+.dark-theme {
   --foreground-rgb: 255, 255, 255;
+  --foreground-secondary-rgb: 209, 213, 219;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 10, 10, 20;
+  --primary-color: 0, 255, 255; /* Cyan */
+  --secondary-color: 153, 0, 255; /* Purple */
+  --accent-color: 255, 0, 255; /* Pink */
+  --border-color: rgba(0, 255, 255, 0.3);
+  --card-bg: rgba(17, 24, 39, 0.7);
+  --card-border: rgba(75, 85, 99, 0.3);
+  --nav-bg: rgba(0, 0, 0, 0.7);
+  --button-hover: rgba(0, 255, 255, 0.2);
+  --shadow-color: rgba(0, 255, 255, 0.2);
+  --glow-effect: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
-/* Only hide cursor on desktop */
+/* Light theme variables */
+.light-theme {
+  --foreground-rgb: 17, 24, 39;
+  --foreground-secondary-rgb: 55, 65, 81;
+  --background-start-rgb: 245, 245, 245;
+  --background-end-rgb: 229, 231, 235;
+  --primary-color: 0, 112, 243; /* Blue */
+  --secondary-color: 79, 70, 229; /* Indigo */
+  --accent-color: 236, 72, 153; /* Pink */
+  --border-color: rgba(0, 112, 243, 0.3);
+  --card-bg: rgba(255, 255, 255, 0.8);
+  --card-border: rgba(209, 213, 219, 0.5);
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --button-hover: rgba(0, 112, 243, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --glow-effect: 0 0 15px rgba(0, 112, 243, 0.3);
+}
+
+/* Default to dark theme */
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --foreground-secondary-rgb: 209, 213, 219;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 10, 10, 20;
+  --primary-color: 0, 255, 255;
+  --secondary-color: 153, 0, 255;
+  --accent-color: 255, 0, 255;
+  --border-color: rgba(0, 255, 255, 0.3);
+  --card-bg: rgba(17, 24, 39, 0.7);
+  --card-border: rgba(75, 85, 99, 0.3);
+  --nav-bg: rgba(0, 0, 0, 0.7);
+  --button-hover: rgba(0, 255, 255, 0.2);
+  --shadow-color: rgba(0, 255, 255, 0.2);
+  --glow-effect: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Only hide default cursor on desktop, but keep it visible on interactive elements */
 @media (min-width: 768px) {
-  * {
+  body {
     cursor: none;
+  }
+  
+  /* Show default cursor on interactive elements for better usability */
+  a, button, input, textarea, select, [role="button"], [contenteditable="true"] {
+    cursor: pointer !important;
+  }
+  
+  input[type="text"], input[type="email"], input[type="password"], 
+  input[type="search"], input[type="number"], textarea {
+    cursor: text !important;
   }
 }
 
@@ -28,8 +86,51 @@ body {
     )
     rgb(var(--background-start-rgb));
   font-family: 'Rajdhani', sans-serif;
+  transition: background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
+/* Theme-specific styles */
+.light-theme .scan-line {
+  background: rgba(var(--primary-color), 0.2);
+  opacity: 0.5;
+}
+
+.light-theme .glitch-effect::before {
+  text-shadow: -1px 0 rgba(var(--accent-color), 0.8);
+}
+
+.light-theme .glitch-effect::after {
+  text-shadow: 1px 0 rgba(var(--primary-color), 0.8);
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .text-gradient-primary {
+    @apply bg-gradient-to-r from-gradient-cyan-start to-gradient-blue-end bg-clip-text text-transparent;
+  }
+  
+  .light-theme .text-gradient-primary {
+    @apply bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent;
+  }
+  
+  .border-theme {
+    @apply border border-cyan-500/30;
+  }
+  
+  .light-theme .border-theme {
+    @apply border border-blue-500/30;
+  }
+  
+  .bg-card {
+    @apply bg-gray-900/80 backdrop-blur-sm;
+  }
+  
+  .light-theme .bg-card {
+    @apply bg-white/80 backdrop-blur-sm;
+  }
+}
+
+/* Animations */
 @keyframes slide {
   from {
     transform: translateX(-20px);
@@ -99,8 +200,9 @@ body {
   position: absolute;
   width: 100%;
   height: 5px;
-  background: rgba(0, 255, 255, 0.2);
+  background: rgba(var(--primary-color), 0.2);
   animation: scan-line 4s linear infinite;
+  z-index: 1;
 }
 
 .glitch-effect {
@@ -119,12 +221,17 @@ body {
 
 .glitch-effect::before {
   left: 2px;
-  text-shadow: -1px 0 #ff00ff;
+  text-shadow: -1px 0 rgba(var(--accent-color), 1);
   animation: glitch 0.3s infinite linear alternate-reverse;
 }
 
 .glitch-effect::after {
   left: -2px;
-  text-shadow: 1px 0 #00ffff;
+  text-shadow: 1px 0 rgba(var(--primary-color), 1);
   animation: glitch 0.3s infinite linear alternate;
+}
+
+/* Theme transition effects */
+.theme-transition {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease, box-shadow 0.5s ease;
 }
