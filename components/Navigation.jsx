@@ -51,7 +51,7 @@ const Navigation = ({ activeSection }) => {
       
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black/95 backdrop-blur-md pt-20 animate-fadeIn">
+        <div className="md:hidden fixed inset-0 z-40 bg-black/98 border-t border-cyan-900/50 pt-20 animate-fadeIn">
           <div className="flex flex-col items-center gap-8 p-8">
             {navItems.map((item, index) => (
               <a

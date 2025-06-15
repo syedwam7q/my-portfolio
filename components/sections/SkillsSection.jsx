@@ -39,14 +39,14 @@ const SkillsSection = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
             >
-              <div className="flex items-center justify-between mb-3">
-                <div className="flex items-center gap-3">
-                  <div className="p-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg">
+              <div className="flex items-center justify-between mb-3 flex-wrap">
+                <div className="flex items-center gap-2 md:gap-3">
+                  <div className="p-1.5 md:p-2 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-lg">
                     {skill.icon}
                   </div>
-                  <span className="font-bold text-lg">{skill.name}</span>
+                  <span className="font-bold text-sm md:text-lg">{skill.name}</span>
                 </div>
-                <span className="text-cyan-400 font-mono">{skill.level}%</span>
+                <span className="text-cyan-400 font-mono text-sm md:text-base">{skill.level}%</span>
               </div>
               <div className="relative h-4 bg-gray-800 rounded-full overflow-hidden">
                 <motion.div

@@ -11,7 +11,7 @@ const HeroSection = () => {
     const interval = setInterval(() => {
       const randomWord = glitchWords[Math.floor(Math.random() * glitchWords.length)];
       setGlitchText(randomWord);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
@@ -23,8 +23,8 @@ const HeroSection = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <div className="relative">
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter">
+        <div className="relative px-4">
+          <h1 className="text-5xl sm:text-6xl md:text-8xl font-black tracking-tighter">
             <span className="block bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-pulse">
               CREATIVE
             </span>
@@ -38,7 +38,7 @@ const HeroSection = () => {
         </div>
         
         <motion.p 
-          className="text-xl text-cyan-300 max-w-2xl mx-auto leading-relaxed"
+          className="text-base sm:text-lg md:text-xl text-cyan-300 max-w-2xl mx-auto leading-relaxed px-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.4, duration: 0.8 }}
@@ -47,18 +47,18 @@ const HeroSection = () => {
         </motion.p>
         
         <motion.div 
-          className="flex flex-col sm:flex-row gap-6 justify-center mt-12"
+          className="flex flex-col sm:flex-row gap-6 justify-center mt-12 px-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8, duration: 0.8 }}
         >
-          <a href="#projects" className="group relative px-8 py-4 overflow-hidden">
+          <a href="#projects" className="group relative px-6 sm:px-8 py-4 overflow-hidden text-center">
             <span className="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 transition-transform group-hover:scale-110" />
-            <span className="relative z-10 flex items-center gap-2 font-bold">
+            <span className="relative z-10 flex items-center justify-center gap-2 font-bold">
               VIEW WORK <Rocket className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </span>
           </a>
-          <a href="#contact" className="relative px-8 py-4 border-2 border-cyan-500 hover:bg-cyan-500/20 transition-colors">
+          <a href="#contact" className="relative px-6 sm:px-8 py-4 border-2 border-cyan-500 hover:bg-cyan-500/20 transition-colors text-center">
             <span className="font-bold">GET IN TOUCH</span>
           </a>
         </motion.div>

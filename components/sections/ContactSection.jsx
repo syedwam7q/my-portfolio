@@ -7,7 +7,7 @@ const ContactSection = () => {
     <section id="contact" className="relative z-10 py-24 px-6 bg-gray-900/50">
       <div className="max-w-4xl mx-auto text-center">
         <motion.h2 
-          className="text-4xl md:text-6xl font-black mb-8 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent"
+          className="text-3xl sm:text-4xl md:text-6xl font-black mb-6 md:mb-8 bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent px-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -17,7 +17,7 @@ const ContactSection = () => {
         </motion.h2>
         
         <motion.p 
-          className="text-xl text-gray-300 mb-12"
+          className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 md:mb-12 px-4"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
@@ -27,7 +27,7 @@ const ContactSection = () => {
         </motion.p>
         
         <motion.div 
-          className="flex flex-col md:flex-row gap-4 md:gap-8 justify-center"
+          className="flex flex-col sm:flex-row gap-4 md:gap-8 justify-center px-4"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -35,7 +35,7 @@ const ContactSection = () => {
         >
           <a 
             href="mailto:sdirwamiq@gmail.com" 
-            className="group flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg hover:shadow-[0_0_30px_rgba(0,255,255,0.5)] transition-all"
+            className="group flex items-center justify-center gap-3 px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg hover:shadow-[0_0_30px_rgba(0,255,255,0.5)] transition-all"
           >
             <Mail className="w-5 h-5" />
             <span className="font-bold">Email Me</span>
@@ -44,7 +44,7 @@ const ContactSection = () => {
             href="https://github.com/syedwam7q" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="group flex items-center gap-3 px-6 py-3 border-2 border-cyan-500 rounded-lg hover:bg-cyan-500/20 transition-all"
+            className="group flex items-center justify-center gap-3 px-6 py-3 border-2 border-cyan-500 rounded-lg hover:bg-cyan-500/20 transition-all"
           >
             <Github className="w-5 h-5" />
             <span className="font-bold">GitHub</span>
@@ -53,7 +53,7 @@ const ContactSection = () => {
             href="https://www.linkedin.com/in/syed-wamiq-713592316" 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="group flex items-center gap-3 px-6 py-3 border-2 border-cyan-500 rounded-lg hover:bg-cyan-500/20 transition-all"
+            className="group flex items-center justify-center gap-3 px-6 py-3 border-2 border-cyan-500 rounded-lg hover:bg-cyan-500/20 transition-all"
           >
             <Linkedin className="w-5 h-5" />
             <span className="font-bold">LinkedIn</span>
@@ -61,13 +61,13 @@ const ContactSection = () => {
         </motion.div>
         
         <motion.div 
-          className="mt-16 p-8 bg-black/50 border border-cyan-900/50 rounded-lg"
+          className="mt-12 md:mt-16 p-4 md:p-8 bg-black/50 border border-cyan-900/50 rounded-lg mx-2 md:mx-0"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
         >
-          <h3 className="text-2xl font-bold mb-6 text-cyan-400">Send a Message</h3>
+          <h3 className="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-cyan-400">Send a Message</h3>
           <form 
             className="space-y-4"
             onSubmit={(e) => {
@@ -91,7 +91,8 @@ const ContactSection = () => {
                   name="name"
                   placeholder="Your Name" 
                   required
-                  className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
+                  className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors text-base"
+                  style={{ WebkitAppearance: "none" }}
                 />
               </div>
               <div>
@@ -100,7 +101,8 @@ const ContactSection = () => {
                   name="email"
                   placeholder="Your Email" 
                   required
-                  className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
+                  className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors text-base"
+                  style={{ WebkitAppearance: "none" }}
                 />
               </div>
             </div>
@@ -110,7 +112,8 @@ const ContactSection = () => {
                 name="subject"
                 placeholder="Subject" 
                 required
-                className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
+                className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors text-base"
+                style={{ WebkitAppearance: "none" }}
               />
             </div>
             <div>
@@ -119,13 +122,14 @@ const ContactSection = () => {
                 name="message"
                 placeholder="Your Message" 
                 required
-                className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors"
+                className="w-full p-3 bg-gray-900 border border-cyan-900/50 rounded-md focus:border-cyan-500 focus:outline-none focus:ring-1 focus:ring-cyan-500 transition-colors text-base"
+                style={{ WebkitAppearance: "none" }}
               />
             </div>
             <div>
               <button 
                 type="submit" 
-                className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold rounded-md hover:shadow-[0_0_30px_rgba(0,255,255,0.5)] transition-all"
+                className="w-full md:w-auto px-8 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold rounded-md hover:shadow-[0_0_30px_rgba(0,255,255,0.5)] transition-all text-base"
               >
                 Send Message
               </button>

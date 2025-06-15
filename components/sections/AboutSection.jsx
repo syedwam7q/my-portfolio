@@ -23,19 +23,19 @@ const AboutSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-base md:text-lg text-gray-300 leading-relaxed">
               A developer and systems thinker who turns abstract ideas into intuitive, high-impact tools and interfaces.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-base md:text-lg text-gray-300 leading-relaxed">
               With a blend of backend logic, frontend precision, and a soft spot for dev experience, I engineer digital environments that feel elegant, make sense fast, and leave room for curiosity.
             </p>
-            <p className="text-lg text-gray-300 leading-relaxed">
+            <p className="text-base md:text-lg text-gray-300 leading-relaxed">
               Whether it's a visual simulator, an interactive code tool, or a full-stack MVP, I aim to bridge the technical and the tangible — crafting experiences that are as purposeful as they are polished.
             </p>
-            <div className="pt-4">
+            <div className="pt-4 flex justify-center md:justify-start">
               <a 
                 href="#contact" 
-                className="inline-block px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold rounded-sm hover:shadow-[0_0_20px_rgba(0,255,255,0.5)] transition-all"
+                className="inline-block px-6 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 text-white font-bold rounded-sm hover:shadow-[0_0_20px_rgba(0,255,255,0.5)] transition-all text-center"
               >
                 Let's Connect
               </a>
