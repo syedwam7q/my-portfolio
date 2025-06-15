@@ -51,13 +51,13 @@ const Navigation = ({ activeSection }) => {
       
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden fixed inset-0 z-40 bg-black/98 border-t border-cyan-900/50 pt-20 animate-fadeIn">
-          <div className="flex flex-col items-center gap-8 p-8">
+        <div className="md:hidden fixed inset-0 z-40 bg-gray-900 backdrop-blur-md border-t border-cyan-500/50 pt-20 animate-fadeIn shadow-[0_4px_30px_rgba(0,255,255,0.1)]">
+          <div className="flex flex-col items-center gap-8 p-8 bg-gradient-to-b from-black to-gray-900/95 rounded-lg mx-4 shadow-inner shadow-cyan-900/20 border border-cyan-900/30">
             {navItems.map((item, index) => (
               <a
                 key={item}
                 href={`#${item}`}
-                className={`text-2xl font-bold transition-all duration-300 animate-fadeInUp ${
+                className={`text-2xl font-bold transition-all duration-300 animate-fadeInUp hover:text-cyan-400 ${
                   activeSection === item ? 'text-cyan-400' : 'text-white'
                 }`}
                 onClick={() => setMobileMenuOpen(false)}
