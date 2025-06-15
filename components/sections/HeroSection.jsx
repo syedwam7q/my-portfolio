@@ -11,7 +11,7 @@ const HeroSection = () => {
     const interval = setInterval(() => {
       const randomWord = glitchWords[Math.floor(Math.random() * glitchWords.length)];
       setGlitchText(randomWord);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
   }, []);
 
